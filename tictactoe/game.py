@@ -1,9 +1,10 @@
 import time
 from player import HumanPlayer, RandomComputerPlayer
 
+
 class TicTacToe:
     def __init__(self):
-        self.board = [' ' for _ in range(9)] # list representing 3x3 board
+        self.board = [' ' for _ in range(9)]  # list representing 3x3 board
         self.current_winner = None
 
     def print_board(self):
@@ -33,7 +34,7 @@ class TicTacToe:
         if self.board[square] == ' ':
             self.board[square] = letter
             if self.winner(square, letter):
-                self .current_winner = letter
+                self.current_winner = letter
             return True
         return False
 
@@ -41,35 +42,36 @@ class TicTacToe:
         # checking all possible winning situations
         # row:
         row_ind = square // 3
-        row = self.board[row_ind*3 : (row_ind + 1) * 3]
+        row = self.board[row_ind*3:(row_ind + 1) * 3]
         if all([spot == letter for spot in row]):
             return True
 
         # check column
         col_ind = square % 3
         column = [self.board[col_ind+i*3] for i in range(3)]
-        if all([spot == letter for spot in row]):
+        if all([spot == letter for spot in column]):
             return True
 
         # check diagonals
         # (only checking for even numbers)
         if square % 2 == 0:
-            diagonal1 = [self.board[i] for i in [0, 4, 8]] # left to right
+            diagonal1 = [self.board[i] for i in [0, 4, 8]]  # left to right
             if all([spot == letter for spot in diagonal1]):
                 return True
-            diagonal2 = [self.board[i] for i in [2, 4, 6]] # right to left
+            diagonal2 = [self.board[i] for i in [2, 4, 6]]  # right to left
             if all([spot == letter for spot in diagonal2]):
                 return True
 
         # if all fails:
         return False
 
+
 def play(game, x_player, o_player, print_game=True):
     # returns the winner or None for a tie
     if print_game:
         game.print_board_nums()
 
-    letter = 'X' # starting letter
+    letter = 'X'  # starting letter
     # iterate while game still has empty squares
     while game.empty_squares():
         # get the move from the appropriate player
