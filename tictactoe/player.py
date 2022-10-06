@@ -1,11 +1,15 @@
+import random
+
+
 class Player:
     def __init__(self, letter):
         # letter is x or o
         self.letter = letter
 
-    # we want all players to get their next move
+    # so all players get their next move
     def get_move(self, game):
         pass
+
 
 class RandomComputerPlayer(Player):
     def __init__(self, letter):
@@ -15,6 +19,7 @@ class RandomComputerPlayer(Player):
         # get a random valid spot for our next move
         square = random.choice(game.available_moves())
         return square
+
 
 class HumanPlayer(Player):
     def __init__(self, letter):
@@ -31,7 +36,7 @@ class HumanPlayer(Player):
                 val = int(square)
                 if val not in game.available_moves():
                     raise ValueError
-                valid_square = True # this is when the if statement fails
+                valid_square = True  # this is when the if statement fails
             except ValueError:
                 print("Invalid square. Try again.")
 
