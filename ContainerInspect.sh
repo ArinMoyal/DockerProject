@@ -3,5 +3,5 @@ if [ "$( docker container inspect -f '{{.State.Status}}' AlpCon )" == "running" 
 else
 	echo "AlpCon not running, starting AlpCon"
 	docker rm -f AlpCon
-	docker run -it --name AlpCon alpcon
+	docker run -d -it --name AlpCon alpcon
 fi
