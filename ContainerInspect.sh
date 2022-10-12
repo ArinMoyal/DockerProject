@@ -1,4 +1,4 @@
-if [ "$( docker container inspect -f '{{.State.Running}}' AlpCon )" == "true" ]; then
+if [ "$( docker container inspect -f '{{.State.Status}}' AlpCon )" == "running" ]; then
 	echo "AlpCon running, starting Python script"
 else
 	echo "AlpCon not running, starting AlpCon"
