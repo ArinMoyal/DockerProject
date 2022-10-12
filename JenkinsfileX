@@ -4,27 +4,12 @@ pipeline {
     stage('Check AlpCon Status') {
       steps {
         sh '''
-                chmod 755 ContainerInspect.sh
+                chmod 755 ${WORKSPACE}/ContainerInspect.sh
                 ${WORKSPACE}/ContainerInspect.sh
            '''
       }
     }
-    stage('List of Environment Variables') {
-      steps {
-	sh '''
-	    echo "####ALL ENV VARIABLES####"
-	    printenv
-	    echo "###END OF ENV VARIABLES###"
-	   '''
-      }
-    }	  
-    stage('C script') {
-      when {
-        anyOf {
-          environment name: 'LANGUAGE', value: 'C'
-          environment name: 'LANGUAGE', value: 'All'
-        }
-      }
+    stage('Running Python Script') {
       steps {
         sh '''
                chmod 755 *.c
