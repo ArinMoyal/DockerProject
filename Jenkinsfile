@@ -15,11 +15,11 @@ pipeline {
       }
     }
     stage('Running Python Script') {
-      when {
-        expression {
-                return RUN
-       }
-    }
+//      when {
+//        expression {
+//                return RUN
+//       }
+//    }
       steps {
         timeout(time: 10, unit: 'SECONDS') {
           sh 'docker run --rm -v /cubecalculation:/cubecalculation -d -it --name AlpCon alpcon'
