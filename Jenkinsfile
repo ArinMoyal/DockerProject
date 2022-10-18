@@ -3,17 +3,17 @@ pipeline {
   stages {
     stage('Check AlpCon Status') {
       steps {
-        script {
-                if ("${ docker container inspect -f '{{.State.Status}}' AlpCon )" == "running"}; then
+        sh '''
+                if [ "$( docker container inspect -f '{{.State.Status}}' AlpCon )" == "running" ]; then
                         echo "AlpCon is already running. Skipping all stages."
                         env.RUN = 1
                 else
                         echo "AlpCon not running, starting AlpCon"
                         env.RUN = 0
                 fi
+          '''
         }
       }
-    }
     stage('Running Python Script') {
       when {
         expression {
