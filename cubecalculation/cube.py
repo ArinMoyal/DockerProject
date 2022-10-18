@@ -14,6 +14,6 @@ if __name__ == "__main__":
     start_time = time_library.time()
     cube_calculations(number_list)
     end_time = time_library.time()
-    with open('results', 'w') as f:
+    with open('/cubecalculation/results', 'w') as f:
         sys.stdout = f
         print(f"The calculation took {end_time - start_time} second(s). The biggest volume was {result_a[-1]}")
