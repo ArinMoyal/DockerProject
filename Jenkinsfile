@@ -19,8 +19,6 @@ pipeline {
 //      when {
 //        expression {
 //                env.RUN == 0
-       }
-    }
       steps {
         script {
                     env.SUCCESS = 1
