@@ -9,7 +9,7 @@ pipeline {
                         RUN=1
                 else
                         echo "AlpCon not running, starting AlpCon"
-                        RUN=0
+                        RUN=00
                 fi
           '''
 //        env.RUN = 0
