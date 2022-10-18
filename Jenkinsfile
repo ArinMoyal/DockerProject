@@ -4,7 +4,7 @@ pipeline {
     stage('Check AlpCon Status') {
       steps {
         script {
-                if ("$( docker container inspect -f '{{.State.Status}}' AlpCon )" == "running"); then
+                if ("${ docker container inspect -f '{{.State.Status}}' AlpCon )" == "running"}; then
                         echo "AlpCon is already running. Skipping all stages."
                         env.RUN = 1
                 else
