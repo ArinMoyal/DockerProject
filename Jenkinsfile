@@ -22,7 +22,7 @@ pipeline {
 //    }
       steps {
         timeout(time: 10, unit: 'SECONDS') {
-          sh 'docker run -v /cubecalculation:/cubecalculation --name AlpCon alpcon'
+          sh 'docker run -v ${WORKSPACE}/cubecalculation:/cubecalculation --name AlpCon alpcon'
     }
    }
   }
