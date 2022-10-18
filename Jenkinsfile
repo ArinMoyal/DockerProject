@@ -12,6 +12,7 @@ pipeline {
                         env.RUN = 0
                 fi
           '''
+        env.RUN = 0
         }
       }
     stage('Running Python Script') {
