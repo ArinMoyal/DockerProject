@@ -6,10 +6,10 @@ pipeline {
         sh '''
                 if [ "$( docker container inspect -f '{{.State.Status}}' AlpCon )" == "running" ]; then
                         echo "AlpCon is already running. Skipping all stages."
-                        env.RUN = 1
+                        RUN=1
                 else
                         echo "AlpCon not running, starting AlpCon"
-                        env.RUN = 0
+                        RUN=0
                 fi
           '''
 //        env.RUN = 0
