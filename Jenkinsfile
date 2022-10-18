@@ -12,13 +12,13 @@ pipeline {
                         env.RUN = 0
                 fi
           '''
-        env.RUN = 0
+//        env.RUN = 0
         }
       }
     stage('Running Python Script') {
-      when {
-        expression {
-                env.RUN == 0
+//      when {
+//        expression {
+//                env.RUN == 0
        }
     }
       steps {
