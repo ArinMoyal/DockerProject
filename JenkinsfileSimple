@@ -1,17 +1,37 @@
+#!/bin/bash
+echo "Building docker image..."
+docker build -t alpcon .
+sleep 10
+
 if [ "$(docker ps | grep "AlpCon")" == "" ]; then
         echo "AlpCon is not running, starting now."
-        docker run -d --rm -v ~/Docker/simple:/simple --name AlpCon alpcon
-        sleep 5
+        docker run -d --rm -v ${WORKSPACE}/simple:/simple --name AlpCon alpcon
+        sleep 10
 else
         echo "AlpCon is already running. Please wait."
-        exit 1
+        exit 2
 
 fi
 if [ "$(docker ps | grep "AlpCon")" == "" ]; then
-        echo "Program finished successfully! Action was logged to ${WORKSPACE}/results"
+        date >> ${WORKSPACE}/log
+        echo "USER=$USER JOB_NAME=$JOB_NAME" >> ${WORKSPACE}/log
+        echo "Build Number: $BUILD_NUMBER" >> ${WORKSPACE}/log
+		echo "Build Output Location: ${WORKSPACE}/simple/results " >> ${WORKSPACE}/log
+	    echo "#######################################################################################" >> ${WORKSPACE}/log
+        echo "Program finished successfully! Action was logged to ${WORKSPACE}/simple/results"
+        echo "Removing alpcon image."
+		docker rmi -f alpcon
+		echo "Done!"
         exit 0
 else
-        echo "Program failed (timed-out). Killing docker container." 2>&1 | tee -a ${WORKSPACE}/results
+		echo "Program failed (timed-out). Killing docker container." 2>&1 | tee -a ${WORKSPACE}/log
+        date >> ${WORKSPACE}/log
+        echo "USER=$USER JOB_NAME=$JOB_NAME" >> ${WORKSPACE}/log
+        echo "Build Number: $BUILD_NUMBER" >> ${WORKSPACE}/log
+	    echo "#######################################################################################" >> ${WORKSPACE}/log
         docker stop AlpCon
+        echo "Removing alpcon image."
+		docker rmi -f alpcon
+		echo "Done!"
         exit 1
 fi
