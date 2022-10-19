@@ -13,22 +13,13 @@ else
 
 fi
 if [ "$(docker ps | grep "AlpCon")" == "" ]; then
-        date >> ${WORKSPACE}/log
-        echo "USER=$USER JOB_NAME=$JOB_NAME" >> ${WORKSPACE}/log
-        echo "Build Number: $BUILD_NUMBER" >> ${WORKSPACE}/log
-	echo "Build Output Location: ${WORKSPACE}/simple/results " >> ${WORKSPACE}/log
-	echo "#######################################################################################" >> ${WORKSPACE}/log
         echo "Program finished successfully! Action was logged to ${WORKSPACE}/simple/results"
         echo "Removing alpcon image."
 	docker rmi -f alpcon
 	echo "Done!"
         exit 0
 else
-	echo "Program failed (timed-out). Killing docker container." 2>&1 | tee -a ${WORKSPACE}/log
-        date >> ${WORKSPACE}/log
-        echo "USER=$USER JOB_NAME=$JOB_NAME" >> ${WORKSPACE}/log
-        echo "Build Number: $BUILD_NUMBER" >> ${WORKSPACE}/log
-	echo "#######################################################################################" >> ${WORKSPACE}/log
+	echo "Program failed (timed-out). Killing docker container."
         docker stop AlpCon
         echo "Removing alpcon image."
 	docker rmi -f alpcon
