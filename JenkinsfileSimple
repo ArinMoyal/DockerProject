@@ -1,7 +1,6 @@
 #!/bin/bash
 echo "Building docker image..."
 docker build -t alpcon .
-sleep 10
 
 if [ "$(docker ps | grep "AlpCon")" == "" ]; then
         echo "AlpCon is not running, starting now."
