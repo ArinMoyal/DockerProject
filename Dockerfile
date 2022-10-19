@@ -4,8 +4,5 @@ FROM alpine
 ENV PYTHONUNBUFFERED=1
 # Using Alpine Package Keeper to install python3
 RUN apk add --update --no-cache python3 && ln -sf python3 /usr/bin/python
-# Making sure pip is installed
-RUN python3 -m ensurepip
-RUN pip3 install --no-cache --upgrade pip setuptools
 # Making sure the script executes by default when you launch the built image
-CMD python /cubecalculation/cube.py
+CMD python /simple/simple.py >> ${WORKSPACE}/results
