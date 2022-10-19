@@ -1,0 +1,17 @@
+if [ "$(docker ps | grep "AlpCon")" == "" ]; then
+        echo "AlpCon is not running, starting now."
+        docker run -d --rm -v ~/Docker/simple:/simple --name AlpCon alpcon
+        sleep 5
+else
+        echo "AlpCon is already running. Please wait."
+        exit 1
+
+fi
+if [ "$(docker ps | grep "AlpCon")" == "" ]; then
+        echo "Program finished successfully! Action was logged to ${WORKSPACE}/results"
+        exit 0
+else
+        echo "Program failed (timed-out). Killing docker container." 2>&1 | tee -a ${WORKSPACE}/results
+        docker stop AlpCon
+        exit 1
+fi
