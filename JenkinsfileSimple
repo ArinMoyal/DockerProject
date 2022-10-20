@@ -18,7 +18,7 @@ if [ "$(docker ps | grep "AlpCon")" == "" ]; then
 	echo "Done!"
         exit 0
 else
-	echo "Program failed (timed-out). Killing docker container."
+	echo "Program failed (timed-out). Killing docker container." 2>&1 | tee ${WORKSPACE}/simple/results
         docker stop AlpCon
         echo "Removing alpcon image."
 	docker rmi -f alpcon
