@@ -1,7 +1,7 @@
 import time
 import sys
 
-tts = 7
+tts = 25
 
 print("Hello, user!")
 time.sleep(tts)
