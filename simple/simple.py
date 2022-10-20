@@ -1,7 +1,10 @@
 import time
 import sys
+
+tts = 5
+
 print("Hello, user!")
-time.sleep(22)
+time.sleep(tts)
 with open('/simple/results', 'w') as f:
         sys.stdout = f
-        print("It's been 22 seconds!")
+        print(f"It's been {tts} seconds!")
